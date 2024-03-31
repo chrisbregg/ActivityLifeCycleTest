@@ -9,9 +9,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.activitylifecycletest.ui.TestViewModel
 import com.example.activitylifecycletest.ui.theme.ActivityLifeCycleTestTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 private const val TAG = "MainActivity"
 
@@ -60,6 +64,12 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
         Log.d(TAG, "onDestroy")
     }
+}
+
+@Composable
+fun GreetingScreen(viewModel: TestViewModel = viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
+
 }
 
 @Composable
